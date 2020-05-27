@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SmartCommunity">
+    <output-path>$PROJECT_DIR$/out/artifacts/SmartCommunity</output-path>
+    <root id="archive" name="SmartCommunity.war" />
+  </artifact>
+</component>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smart.dao.District2Mapper" >
+  <resultMap id="BaseResultMap" type="com.smart.entity.District2" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, city, district
+  </sql>
+  <select id="getDistrictByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from district2
+    where district = #{district,jdbcType=VARCHAR}
+  </select>
+  <select id="queryDistrict" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from district2
+    where district = #{districtName,jdbcType=VARCHAR}
+  </select>
+  <select id="getDistrictByCit" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from district2
+    where city = #{city, jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteDistrict" parameterType="java.lang.Integer" >
+    delete from district2
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="saveDistrict" parameterType="com.smart.entity.District" >
+    insert into district2 (id, city, district
+      )
+    values (#{id,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateDistrict" parameterType="com.smart.entity.District" >
+    update district2
+    set city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

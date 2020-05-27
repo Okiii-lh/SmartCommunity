@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smart.dao.ScoreMapper" >
+  <resultMap id="BaseResultMap" type="com.smart.entity.Score" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="socredate" property="socredate" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, socredate, score
+  </sql>
+  <select id="getScoreById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from score
+    where username = #{username,jdbcType=INTEGER}
+  </select>
+
+  <insert id="saveScore" parameterType="com.smart.entity.Score" >
+    insert into score (id, username, socredate, 
+      score)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{socredate,jdbcType=VARCHAR}, 
+      #{score,jdbcType=VARCHAR})
+  </insert>
+</mapper>

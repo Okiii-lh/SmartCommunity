@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smart.dao.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.smart.entity.News" >
+    <id column="newsid" property="newsid" jdbcType="INTEGER" />
+    <result column="photopath" property="photopath" jdbcType="VARCHAR" />
+    <result column="newscontent" property="newscontent" jdbcType="VARCHAR" />
+    <result column="newstitle" property="newstitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    newsid, photopath, newscontent, newstitle
+  </sql>
+  <select id="getAllNews" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from news
+  </select>
+  <select id="getNewsById" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from news
+    where newsid = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

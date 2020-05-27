@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smart.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.smart.entity.Admin" >
+    <id column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    username, password
+  </sql>
+  <select id="selectByLoginInfo" resultMap="BaseResultMap" parameterType="com.smart.entity.Admin" >
+    select
+    <include refid="Base_Column_List" />
+    from admin
+    where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+  </select>
+  <update id="updateUser" parameterType="com.smart.entity.Admin" >
+    update admin
+    set password = #{password,jdbcType=VARCHAR}
+    where username = #{username,jdbcType=VARCHAR}
+  </update>
+</mapper>

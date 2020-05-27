@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smart.dao.MarkMapper" >
+  <resultMap id="BaseResultMap" type="com.smart.entity.Mark" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="newsid" property="newsid" jdbcType="VARCHAR" />
+    <result column="markcontent" property="markcontent" jdbcType="VARCHAR" />
+    <result column="newstitle" property="newstitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, newsid, markcontent, newstitle
+  </sql>
+  <select id="getMarksByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from mark
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getMarksByNewId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List"/>
+    from mark
+    where newsid = #{newId,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="saveMark" parameterType="com.smart.entity.Mark" >
+    insert into mark (id, username, newsid,
+      markcontent, newstitle)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{newsid,jdbcType=VARCHAR},
+      #{markcontent,jdbcType=VARCHAR}, #{newstitle,jdbcType=VARCHAR})
+  </insert>
+
+</mapper>
